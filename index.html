@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="music-container">
+        <h5 id="title">Título Playlist</h5>
+         <img id="cover" alt="DiscCover."></img>
+         <audio id="audio"></audio>
+        <div id="below-cover">
+            <div id="song-info">
+                <div id="name-of-music">Nome da musica</div>
+                <div id="name-of-band" class="light-color">Nome da banda</div>
+            </div>
+            <button id="heart" class="button light-color"><i class="bi bi-suit-heart"></i></button>
+        </div>
+        <div id="progress-container">
+             <div id="progress-bar">
+                <div id="current-progress"></div>
+             </div>
+             <div id="time-box">
+                <div id="song-time"></div>
+                <div id="total-time">00:00</div>
+             </div>
+        </div>
+        <div id="button-container">
+            <button id="shuffle" class="button"><i class="bi bi-shuffle"></i></button>
+            <button id="previous" class="button button-navigate"><i class="bi bi-skip-backward"></i></button>
+            <button id="play" class="button button-biggest"><i class="bi bi-play-circle-fill"></i></button>
+            <button id="next" class="button button-navigate"><i class="bi bi-skip-forward"></i></button>
+            <button id="repeat" class="button"><i class="bi bi-arrow-repeat"></i></button>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+</body>
+</html>
