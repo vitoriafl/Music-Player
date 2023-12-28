@@ -11,34 +11,39 @@ const shuffleButton = document.getElementById('shuffle');
 const repeatButton = document.getElementById('repeat');
 const songTime = document.getElementById('song-time');
 const totalTime = document.getElementById('total-time');
+const likeButton = document.getElementById('heart');
 
 const asItWas = {
     songName:'As It Was',
     artist: 'Harry Styles',
     musicFile: 'As_It_Was',
-    coverFile: 'musica1'
+    coverFile: 'musica1',
+    liked: false
 };
 
 const flower = {
     songName:'Flower',
     artist: 'Johnny Stimson',
     musicFile: 'Johnny_Stimson-Flower(Official-Lyric-Video)',
-    coverFile: 'musica2'
+    coverFile: 'musica2',
+    liked: false
 };
 
 const youAreSorry = {
     songName:"You're Sorry",
     artist: 'Victor Lundberg',
     musicFile: "You're_Sorry",
-    coverFile: 'musica3'
+    coverFile: 'musica3',
+    liked: false
 };
 
-const originalPlaylist = [asItWas, flower, youAreSorry];
+const originalPlaylist = JSON.parse(localStorage.getItem('playlist')) ?? [asItWas, flower, youAreSorry];
 let index = 0;
 let isPlaying = false;
 let isShuffled = false;
 let sortedPlaylist = [...originalPlaylist];
 let repeatOn = false;
+
 
 function playSong(){
     play.querySelector('.bi').classList.remove('bi-play-circle-fill');
@@ -67,6 +72,7 @@ function inicializeSong(){
     song.src = `songs/${sortedPlaylist[index].musicFile}.mp3`;
     songName.innerText = sortedPlaylist[index].songName;
     bandName.innerText = sortedPlaylist[index].artist;
+    likeButtonRender();
 }
 
 function previousSong(){
@@ -154,7 +160,7 @@ function nextOrRepeat(){
     }
 }
 
- 
+
  
 function updateTimeSong(){
     songTime.innerText=`${Math.floor(song.currentTime/60)}:${Math.floor(song.currentTime%60).toString().padStart(2, '0')}`;
@@ -164,6 +170,29 @@ function updateTotalTime(){
      totalTime.innerText=`${Math.floor(song.duration/60)}:${Math.floor(song.duration%60).toString().padStart(2, '0')}`;
 }
 
+function likeButtonRender(){
+    if(sortedPlaylist[index].liked==true){
+        likeButton.querySelector('.bi').classList.remove('bi-suit-heart');
+        likeButton.querySelector('.bi').classList.add('bi-suit-heart-fill');
+        likeButton.classList.add('button-like-active');
+    }
+    else{
+        likeButton.querySelector('.bi').classList.add('bi-suit-heart');
+        likeButton.querySelector('.bi').classList.remove('bi-suit-heart-fill');
+        likeButton.classList.remove('button-like-active');
+    }
+}
+
+function likeButtonClicked(){
+    if(sortedPlaylist[index].liked==false){
+        sortedPlaylist[index].liked=true;
+    }
+    else{
+        sortedPlaylist[index].liked=false;
+    }
+    likeButtonRender();
+    localStorage.setItem('playlist', JSON.stringify(originalPlaylist));
+}
 
 inicializeSong();
 
@@ -178,6 +207,8 @@ song.addEventListener('timeupdate', updateTimeSong);
 progressContainer.addEventListener('click', jumpTo);
 shuffleButton.addEventListener('click', shuffleButtonClicked);
 repeatButton.addEventListener('click', repeatButtonClicked);
+likeButton.addEventListener('click', likeButtonClicked);
+
 
 
 

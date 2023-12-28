@@ -90,11 +90,15 @@ button {
 }
 
 .button-active {
-    color: rgb(45, 169, 72);
+    color: rgb(59, 187, 114);
 }
 
 #time-box {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.button-like-active {
+    color:rgb(247, 96, 94);
 }
