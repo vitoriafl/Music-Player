@@ -12,12 +12,18 @@ const repeatButton = document.getElementById('repeat');
 const songTime = document.getElementById('song-time');
 const totalTime = document.getElementById('total-time');
 const likeButton = document.getElementById('heart');
+const soundButton = document.getElementById('sound');
+const volBarContainer = document.getElementById('vol-bar-container');
+const volContainer = document.getElementById('vol-container');
+const volBar = document.getElementById('vol-bar');
+const currentVol = document.getElementById('current-vol');
+const progressBar = document.getElementById('progress-bar');
 
 const asItWas = {
     songName:'As It Was',
     artist: 'Harry Styles',
     musicFile: 'As_It_Was',
-    coverFile: 'musica1',
+    coverFile: 'gato1',
     liked: false
 };
 
@@ -25,7 +31,7 @@ const flower = {
     songName:'Flower',
     artist: 'Johnny Stimson',
     musicFile: 'Johnny_Stimson-Flower(Official-Lyric-Video)',
-    coverFile: 'musica2',
+    coverFile: 'gato2',
     liked: false
 };
 
@@ -33,16 +39,73 @@ const youAreSorry = {
     songName:"You're Sorry",
     artist: 'Victor Lundberg',
     musicFile: "You're_Sorry",
-    coverFile: 'musica3',
+    coverFile: 'gato3',
     liked: false
 };
 
-const originalPlaylist = JSON.parse(localStorage.getItem('playlist')) ?? [asItWas, flower, youAreSorry];
+const flyMeToTheMoon = {
+    songName:"Fly Me To The Moon",
+    artist: 'Frank Sinatra',
+    musicFile: "Fly Me To The Moon (2008 Remastered)",
+    coverFile: 'gato4',
+    liked: false
+}
+
+const gimmeGimme = {
+    songName:"Gimme Gimme",
+    artist: 'Johnny Stimson',
+    musicFile: "Johnny Stimson - Gimme Gimme (Official Lyric Video)",
+    coverFile: 'gato5',
+    liked: false
+}
+
+const everySecond = {
+    songName:"Every Second",
+    artist: 'Mina Okabe',
+    musicFile: "Mina Okabe - Every Second (Lyric Video)",
+    coverFile: 'gato6',
+    liked: false
+}
+
+const youCanDoIt = {
+    songName:"You Can Do It",
+    artist: 'Johnny Stimson',
+    musicFile: "Johnny Stimson - You Can Do It (Official Lyric Video)",
+    coverFile: 'gato7',
+    liked: false
+}
+
+const theGirlFromIpanema = {
+    songName:"The Girl From Ipanema",
+    artist: 'Frank Sinatra',
+    musicFile: "The Girl From Ipanema (2008 Remastered)",
+    coverFile: 'gato8',
+    liked: false
+}
+
+const sunroof = {
+    songName:"Sunroof",
+    artist: 'Nicky Youre, dazy',
+    musicFile: "Nicky Youre, dazy - Sunroof (Official Music Video) (1)",
+    coverFile: 'gato9',
+    liked: false
+}
+
+const butterflies = {
+    songName:"Butterflies",
+    artist: 'Johnny Stimson',
+    musicFile: "Johnny Stimson - Butterflies (Official Lyric Video)",
+    coverFile: 'gato10',
+    liked: false
+}
+
+const originalPlaylist = JSON.parse(localStorage.getItem('playlist')) ?? [youCanDoIt, asItWas, flower, youAreSorry, flyMeToTheMoon, gimmeGimme, everySecond, theGirlFromIpanema, sunroof, butterflies];
 let index = 0;
 let isPlaying = false;
 let isShuffled = false;
 let sortedPlaylist = [...originalPlaylist];
 let repeatOn = false;
+let isShowed = false;
 
 
 function playSong(){
@@ -159,8 +222,6 @@ function nextOrRepeat(){
         nextSong();
     }
 }
-
-
  
 function updateTimeSong(){
     songTime.innerText=`${Math.floor(song.currentTime/60)}:${Math.floor(song.currentTime%60).toString().padStart(2, '0')}`;
@@ -194,6 +255,41 @@ function likeButtonClicked(){
     localStorage.setItem('playlist', JSON.stringify(originalPlaylist));
 }
 
+function hideVolBar(){
+    volBarContainer.style.opacity = '0';
+    soundButton.style.opacity = '0.4';
+}
+
+function showVolBar(){
+    volBarContainer.style.opacity = '1';
+    soundButton.style.opacity = '1';
+}
+
+function adjustVolume(event){
+    const barWidth = volBar.clientWidth;
+    const volumeLevel = (event.offsetX)/barWidth;
+    song.volume = volumeLevel;
+    currentVol.style.width = `${volumeLevel*100}%`;
+}
+
+function incVolBar(){
+    volBar.style.height= '7px';
+}
+
+function decVolBar(){
+    volBar.style.height = `5px`;
+}
+
+
+function incProgressBar(){
+    progressBar.style.height= '5px';
+}
+
+function decProgressBar(){
+    progressBar.style.height = `3px`;
+}
+
+
 inicializeSong();
 
 
@@ -205,11 +301,16 @@ song.addEventListener('ended', nextOrRepeat);
 song.addEventListener('loadedmetadata', updateTotalTime);
 song.addEventListener('timeupdate', updateTimeSong);
 progressContainer.addEventListener('click', jumpTo);
+progressContainer.addEventListener('pointerenter', incProgressBar);
+progressContainer.addEventListener('pointerleave', decProgressBar);
 shuffleButton.addEventListener('click', shuffleButtonClicked);
 repeatButton.addEventListener('click', repeatButtonClicked);
 likeButton.addEventListener('click', likeButtonClicked);
-
-
+soundButton.addEventListener('pointerenter', showVolBar);
+volContainer.addEventListener('pointerleave', hideVolBar);
+volBar.addEventListener('pointerenter', incVolBar);
+volBar.addEventListener('pointerleave', decVolBar);
+volBar.addEventListener('click', adjustVolume);
 
 
 

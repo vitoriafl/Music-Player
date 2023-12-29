@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Music Player</title>
+    <link rel="icon" href="images/icons8-cabeça-de-gato-24 (1).png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <div class="music-container">
+        <div id="vol-container" >
+            <button id="sound"><i class="bi bi-volume-up-fill"></i></button>
+            <div id="vol-bar-container" class="show">
+                <div id="vol-bar">
+                    <div id="current-vol"></div>
+                </div>
+            </div>
+        </div>
+        
         <h5 id="title">Playlist - Vitória Lima</h5>
          <img id="cover" alt="DiscCover."></img>
          <audio id="audio"></audio>
