@@ -147,3 +147,94 @@ button {
     width: 50%;
     border-radius: inherit;
 }
+
+.bgcolor0 {
+    background-image: linear-gradient(
+        rgb(124, 37, 98),
+        rgb(82, 24, 80)
+    );
+}
+
+.bgcolor1 {
+    background-image: linear-gradient(
+    rgb(70, 57, 170), 
+    rgb(11, 31, 101)
+    );
+}
+
+.bgcolor2 {
+    background-image: linear-gradient(
+    rgb(21, 92, 62), 
+    rgb(14, 82, 57)
+    );
+}
+
+.bgcolor3 {
+    background-image: linear-gradient(
+    rgb(202, 81, 33), 
+    rgb(131, 33, 13)
+    );
+}
+
+.bgcolor4 {
+    background-image: linear-gradient(
+    rgb(159, 89, 89), 
+    rgb(102, 52, 46)
+    );
+}
+
+.bgcolor5 {
+    background-image: linear-gradient(
+    rgb(57, 53, 39), 
+    rgb(28, 26, 20)
+    );
+}
+
+.bgcolor6 {
+    background-image: linear-gradient(
+    rgb(66, 105, 70), 
+    rgb(47, 74, 35)
+    );
+}
+
+.bgcolor7 {
+    background-image: linear-gradient(
+    rgb(202, 33, 188), 
+    rgb(97, 12, 80)
+    );
+}
+
+.bgcolor8 {
+    background-image: linear-gradient(
+    rgb(202, 160, 33), 
+    rgb(173, 133, 12)
+    );
+}
+
+.bgcolor9 {
+    background-image: linear-gradient(
+    rgb(33, 163, 202), 
+    rgb(9, 71, 96)
+    );
+}
+
+.bgcolor9 {
+    background-image: linear-gradient(
+    rgb(33, 163, 202), 
+    rgb(9, 71, 96)
+    );
+}
+
+.bgcolor10 {
+    background-image: linear-gradient(
+    rgb(165, 202, 33), 
+    rgb(49, 88, 22)
+    );
+}
+
+.bgcolor11 {
+    background-image: linear-gradient(
+    rgb(202, 33, 109), 
+    rgb(96, 9, 41)
+    );
+}

@@ -18,6 +18,7 @@ const volContainer = document.getElementById('vol-container');
 const volBar = document.getElementById('vol-bar');
 const currentVol = document.getElementById('current-vol');
 const progressBar = document.getElementById('progress-bar');
+const body = document.getElementById('body');
 
 const asItWas = {
     songName:'As It Was',
